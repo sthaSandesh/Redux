@@ -38,7 +38,7 @@ const reducer = (state = initalState , action) =>{
                 effiWearStock: state.effiWearStock - 1,
             }
 
-          case Restock_effiWear:
+          case effi_WearRestock:
             return{
                 ...state,
                 effiWearStock : state.effiWearStock + action.payload,
