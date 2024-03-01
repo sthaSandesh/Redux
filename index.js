@@ -2,7 +2,7 @@ const redux = require('redux'); //importing redux
 
 const createStore = redux.createStore; //creating store
 const bindActionCreators = redux.bindActionCreators //binding action to the store
-
+const combineReducers = redux.combineReducers //combining multiple reducers
 
 const effi_WearRequest ="effiWear"
 const effi_WearRestock = "Restock"
@@ -41,14 +41,17 @@ function Restock_Jacket (qty = 1){
 } 
 
 //defining inital state
-const initalState = {
+const effiWear_State = {
 effiWearStock : 100,
-jacketStock : 100,
+}
+
+const jacket_state = {
+    jacketStock : 100,
 }
 
 // (previousState, action) => newState
 
-const reducer = (state = initalState , action) =>{
+const reducer = (state = effiWear_State , action) =>{
     switch(action.type){
         case effi_WearRequest:
             return{
@@ -61,7 +64,14 @@ const reducer = (state = initalState , action) =>{
                 ...state,
                 effiWearStock : state.effiWearStock + action.payload,
             }
-        case jacket_effiRequest:
+            default:
+                return state ;
+    }
+}
+
+const jacketReducer = (state = jacket_state , action) =>{
+    switch(action.type){
+    case jacket_effiRequest:
             return{
                 ...state,
                 jacketStock : state.jacketStock - 1,
@@ -74,12 +84,17 @@ const reducer = (state = initalState , action) =>{
             }
             default:
                 return state ;
+        }
+
     }
-}
 
+    const rootReducer = combineReducers({
+        effiWear : reducer,
+        jacket : jacketReducer,
+    
+    })
 
-
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 console.log('Initial State', store.getState());
 
 const unsubscribe = store.subscribe(()=> console.log('present state' , store.getState()));
@@ -112,5 +127,3 @@ actions.Restock_Jacket(10)
 
 unsubscribe();  //after unsubscribe it will not dispatch request
 // store.dispatch(effiWear());  //dispatching action 
-
-
