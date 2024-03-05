@@ -1,8 +1,13 @@
 const redux = require('redux'); //importing redux
+const reduxLogger = require('redux-logger')
 
 const createStore = redux.createStore; //creating store
 const bindActionCreators = redux.bindActionCreators //binding action to the store
 const combineReducers = redux.combineReducers //combining multiple reducers
+const applyMiddleware = redux.applyMiddleware //applying middleware
+
+const logger = reduxLogger.createLogger() //creating logger
+
 
 const effi_WearRequest ="effiWear"
 const effi_WearRestock = "Restock"
@@ -94,10 +99,10 @@ const jacketReducer = (state = jacket_state , action) =>{
     
     })
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer , applyMiddleware(logger));
 console.log('Initial State', store.getState());
 
-const unsubscribe = store.subscribe(()=> console.log('present state' , store.getState()));
+const unsubscribe = store.subscribe(()=> {});  //{}replaced with console.log('present state' , store.getState())
 
 // store.dispatch({
 //     type: effi_WearRequest,
