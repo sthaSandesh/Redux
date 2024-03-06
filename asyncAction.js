@@ -1,5 +1,5 @@
 const redux = require('redux');
-const thunkMiddleware = require('redux-thunk').thunk; //thunk middleware
+const thunkMiddleware = require('redux-thunk').default; //thunk middleware
 const axios = require('axios')
 
 const NayaStore = redux.createStore;
@@ -67,18 +67,18 @@ const reducer = (state = intitalState , action ) =>{
 const store = NayaStore(reducer , applyMiddleware(thunkMiddleware));
 
 const fetchUser = () => {
-    return function(dispatch){
-            dispatch(fetchUserRequested())
-            axios.get('https://jsonplaceholder.typicode.com/users')
-            .then((responce) =>{
-                const nam = responce.data.map(user => user.id)
-                dispatch(fetchUserSucceeded(nam))
-                .catch(error =>{
-                    dispatch(fetchUserFailed(error.message))
-                })
-            })
-        }
+    return function(dispatch) {
+        dispatch(fetchUserRequested());
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then((response) => {
+            const nam = response.data.map(user => user.id);
+            dispatch(fetchUserSucceeded(nam));
+        })
+        .catch(error => {
+            dispatch(fetchUserFailed(error.message));
+        });
     }
+}
 
 
 const unsubscribe = store.subscribe(()=>{console.log(store.getState())});
