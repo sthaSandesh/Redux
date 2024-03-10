@@ -1,11 +1,11 @@
 //store.js
 
-const configureStore = require('@reduxjs/toolkit').configureStore
+import { configureStore } from '@reduxjs/toolkit'
 // const reduxLogger = require('redux-logger')
 
-const hoodiesReducer = require('../features/hoodies/hoodies')
-const jacketReducer = require('../features/jacket/jacket')
-const userReducer = require('../features/user/userSlice')
+import hoodiesReducer from '../../../rkd-demo/features/hoodies/hoodies'
+import jacketReducer from '../../../rkd-demo/features/jacket/jacket'
+import userReducer from '../../../rkd-demo/features/user/userSlice'
 
 // const logger = reduxLogger.createLogger()
 
@@ -20,4 +20,4 @@ const store = configureStore({
 })
 
 
-module.exports = store 
+export default store 

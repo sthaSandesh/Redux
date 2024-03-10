@@ -1,7 +1,7 @@
 //jacket.js
 
-const { createSlice } = require('@reduxjs/toolkit');
-
+import { createSlice } from '@reduxjs/toolkit';
+import { ordered as hoodiesOrdered } from '../hoodies/hoodies';
 
 const initialState = {
     numOfJacket : 10
@@ -25,11 +25,11 @@ const jacketSlice = createSlice({
     // }
 
     extraReducers :(builder)=>{
-        builder.addCase('hoodies/ordered' , (state) =>{
+        builder.addCase(hoodiesOrdered , (state) =>{
             state.numOfJacket--;
         })
     }
 })
 
-module.exports = jacketSlice.reducer ; 
-module.exports.jacketActions = jacketSlice.actions;
+export default jacketSlice.reducer ; 
+export const {ordered , restocked} = jacketSlice.actions;

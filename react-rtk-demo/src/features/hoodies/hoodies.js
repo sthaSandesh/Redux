@@ -1,6 +1,6 @@
 // hoodies.js
 
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   numOfHoodies: 10
@@ -19,5 +19,5 @@ const hoodiesSlice = createSlice({
   }
 });
 
-module.exports = hoodiesSlice.reducer;
-module.exports.hoodiesActions = hoodiesSlice.actions;
+export default hoodiesSlice.reducer
+export const {ordered , restocked} = hoodiesSlice.actions;
