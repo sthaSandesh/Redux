@@ -5,9 +5,7 @@ const hoodiesActions = require('./features/hoodies/hoodies.js').hoodiesActions;
 const jacketActions = require('./features/jacket//jacket').jacketActions;
 
 console.log('Inital State' , store.getState())
-const unsubscribe = store.subscribe(() => {
-    console.log("update state" , store.getState())
-})
+const unsubscribe = store.subscribe(() => {})
 
 store.dispatch(hoodiesActions.ordered())
 store.dispatch(hoodiesActions.ordered())

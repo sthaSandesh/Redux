@@ -1,9 +1,13 @@
 //store.js
 
 const configureStore = require('@reduxjs/toolkit').configureStore
+const reduxLogger = require('redux-logger')
 
 const hoodiesReducer = require('../features/hoodies/hoodies')
 const jacketReducer = require('../features/jacket/jacket')
+
+
+const logger = reduxLogger.createLogger()
 
 
 const store = configureStore({
@@ -11,6 +15,7 @@ const store = configureStore({
         hoodies : hoodiesReducer,
         jacket : jacketReducer
     },
+    middleware : (getDefaultMiddleware) =>getDefaultMiddleware().concat(logger),
 })
 
 
