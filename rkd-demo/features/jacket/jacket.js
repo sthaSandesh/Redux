@@ -16,7 +16,18 @@ const jacketSlice = createSlice({
         },
         restocked :(state , action) =>{
             state.numOfJacket += action.payload
-        }
+        },
+    },
+    // extraReducers :{
+    //     ['hoodies/ordered'] :(state) =>{
+    //         state.numOfJacket--;
+    //     }
+    // }
+
+    extraReducers :(builder)=>{
+        builder.addCase('hoodies/ordered' , (state) =>{
+            state.numOfJacket--;
+        })
     }
 })
 
