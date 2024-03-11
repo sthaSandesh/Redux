@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ordered as hoodiesOrdered } from '../hoodies/hoodies';
 
 const initialState = {
-    numOfJacket : 10
+    numOfJacket : 50
 }
 
 const jacketSlice = createSlice({
