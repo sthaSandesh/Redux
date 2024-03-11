@@ -1,10 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { ordered, restocked } from "./hoodies";
 import { useState } from "react";
+
 export const HoodiesView = () => {
   const [count, setCount] = useState(1);
-  const numOfHoodies = useSelector((state) => state.hoodies.numOfHoodies);
-  const dispatch = useDispatch();
+  const numOfHoodies = useAppSelector((state) => state.hoodies.numOfHoodies);
+  const dispatch = useAppDispatch();
   return (
     <div>
       <h1>Number of Hoodies - {numOfHoodies}</h1>
